@@ -1,7 +1,7 @@
 {
   "name": "phli",
-  "description": "Interact with the City of Philadelphia's Licenses & Inspections Data.",
-  "version": "0.0.0",
+  "description": "A Node.js module for working with City of Philadelphia's Licenses & Inspections Data.",
+  "version": "0.0.1",
   "homepage": "http://github.com/mdb/phli",
   "author": "Mike Ball",
   "main": ".lib/phli",
