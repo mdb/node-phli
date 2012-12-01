@@ -59,6 +59,14 @@ describe("Phli", function() {
     });
   });
 
+  describe("#getPermits", function (done) {
+    it("exists a public method on a phli instance", function (done) {
+      phli = require(modulePath)();
+      expect(typeof phli.getPermits).to.eql("function");
+      done();
+    });
+  });
+
   describe("#getData", function (done) {
     beforeEach(function() {
       phli = require(modulePath)();
