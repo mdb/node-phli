@@ -17,21 +17,18 @@ describe("Phli", function() {
       expect(phli.settings.apiHost).to.eql("http://services.phila.gov");
       expect(phli.settings.addressKeyPath).to.eql("/ULRS311/Data/LIAddressKey");
       expect(phli.settings.historyPath).to.eql("/PhillyAPI/data/v0.7/HelperService.svc/GetLocationHistory");
-      expect(phli.settings.permitPathBase).to.eql("/PhillyApi/data/v0.7/Service.svc/");
     });
     
     it("can be set to the overriding values it's passed on instantiation", function () {
       phli = require(modulePath)({
         apiHost: 'fakeHost',
         addressKeyPath: 'fakeAddressKeyPath',
-        historyPath: 'fakeHistoryPath',
-        permitPathBase: 'fakePermitPathBase'
+        historyPath: 'fakeHistoryPath'
       });
 
       expect(phli.settings.apiHost).to.eql("fakeHost");
       expect(phli.settings.addressKeyPath).to.eql("fakeAddressKeyPath");
       expect(phli.settings.historyPath).to.eql("fakeHistoryPath");
-      expect(phli.settings.permitPathBase).to.eql("fakePermitPathBase");
     });
   });
 
@@ -51,10 +48,10 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getHistory", function (done) {
+  describe("#getAddressHistory", function (done) {
     it("exists a public method on a phli instance", function (done) {
       phli = require(modulePath)();
-      expect(typeof phli.getHistory).to.eql("function");
+      expect(typeof phli.getAddressHistory).to.eql("function");
       done();
     });
   });
