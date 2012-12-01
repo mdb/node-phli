@@ -1,0 +1,31 @@
+{
+  "name": "phli",
+  "description": "Get Licenses & Inspections history for a Philadelphia address",
+  "version": "0.0.0",
+  "homepage": "http://github.com/mdb/phli",
+  "author": "Mike Ball",
+  "main": ".lib/phl-li",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mdb/phli.git"
+  },
+  "engines": {
+    "node": "0.8.14",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "request": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "nock": "*",
+    "expect.js": "*",
+    "sinon": "1.5.0",
+    "grunt": ">=0.3.16",
+    "grunt-simple-mocha": ">=0.2.0"
+  },
+  "scripts": {
+    "test": "grunt --verbose"
+  }
+}
