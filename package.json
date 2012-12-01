@@ -1,13 +1,13 @@
 {
   "name": "phli",
-  "description": "Get Licenses & Inspections history for a Philadelphia address",
+  "description": "Interact with the City of Philadelphia's Licenses & Inspections Data.",
   "version": "0.0.0",
   "homepage": "http://github.com/mdb/phli",
   "author": "Mike Ball",
-  "main": ".lib/phl-li",
+  "main": ".lib/phli",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mdb/phli.git"
+    "url": "http://github.com/mdb/node-phli.git"
   },
   "engines": {
     "node": "0.8.14",
