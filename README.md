@@ -83,3 +83,11 @@ Available filters example:
       start_date: '2011-12-01',
       end_date: '2012-12-01',
     }
+
+### getPermitInfo
+
+Get permit details surrounding a specific permit ID, such as 33333:
+
+    phli.getPermitInfo('33333', function (data) {
+      console.log(data);
+    });
