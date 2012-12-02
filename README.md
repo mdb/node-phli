@@ -4,8 +4,6 @@ A Node.js module for interacting with the City of Philadelphia's Licenses & Insp
 
 phli was built during the December 2012 [Random Hacks of Kindness](http://www.rhok.org) Philadelphia hackathon.
 
-The module uses Philadelphia's [311 Mobile Data Service API](http://services.phila.gov/ULRS311).
-
 ## Getting Started
 
 Install phli:
