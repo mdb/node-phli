@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/mdb/node-phli.png?branch=master)](https://travis-ci.org/mdb/node-phli)
+
 # phli
 
 A Node.js module for interacting with the City of Philadelphia's Licenses & Inspections data.
