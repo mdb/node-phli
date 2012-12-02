@@ -83,8 +83,7 @@ Available filters example:
       council_district: '1', // 1 - 10; pass an array of districts to filter on multiple districts
       census_tract: '1', // 1 - 300-and-something; pass an array of tracts to filter on multiple tracts
       start_date: '2011-12-01',
-      end_date: '2012-12-01',
-      top: '2'
+      end_date: '2012-12-01'
     }
 
 ### getPermitInfo
