@@ -20,7 +20,7 @@ Require and instantiate phli:
 
 Get L & I history for a Philadelpia address:
 
-    phli.getAddressHistory('1500 market street', function (data) {
+    phli.getAddressHistory('1500 market street', function (err, data) {
       console.log(data);
     });
 
@@ -28,64 +28,67 @@ Get L & I history for a Philadelpia address:
 
 Get permits data related to a certain filter criteria, such as zipcode:
 
-    phli.getPermits({zip: '19143'}, function (data) {
+    phli.getPermits({zip: '19143'}, function (err, data) {
       console.log(data);
     });
 
 Available filters example:
 
     {
-      zip: '19143',
-      ward: '44', // 1 - 66
-      contractor_name: 'John Doe',
-      council_district: '1', // 1 - 10
-      census_tract: '1', // 1 - 300-and-something 
+      zip: '19143', // pass an array of zipcodes to filter on multiple zips
+      ward: '44', // 1 - 66; pass an array of wards to filter on multiple wards
+      contractor_name: 'John Doe'; pass an array of contractors to filter on multiple contractors
+      council_district: '1', // 1 - 10; pass an array of districts to filter on multiple districts
+      census_tract: '1', // 1 - 300-and-something; pass an array of tracts to filter on multiple tracts
       start_date: '2011-12-01',
       end_date: '2012-12-01',
+      top: '2'
     }
 
 ### getLicenses
 
 Get licenses data related to a certain filter criteria, such as zipcode:
 
-    phli.getLicenses({zip: '19143'}, function (data) {
+    phli.getLicenses({zip: '19143'}, function (err, data) {
       console.log(data);
     });
 
 Available filters example:
 
     {
-      zip: '19143',
-      ward: '44', // 1 - 66
-      council_district: '1', // 1 - 10
-      census_tract: '1', // 1 - 300-and-something 
+      zip: '19143', // pass an array of zipcodes to filter on multiple zips
+      ward: '44', // 1 - 66; pass an array of wards to filter on multiple wards
+      council_district: '1', // 1 - 10; pass an array of districts to filter on multiple districts
+      census_tract: '1', // 1 - 300-and-something; pass an array of tracts to filter on multiple tracts
       start_date: '2011-12-01',
       end_date: '2012-12-01',
+      top: '2'
     }
 
 ### getCases
 
 Get cases data related to a certain filter criteria, such as zipcode:
 
-    phli.getLicenses({zip: '19143'}, function (data) {
+    phli.getLicenses({zip: '19143'}, function (err, data) {
       console.log(data);
     });
 
 Available filters example:
 
     {
-      zip: '19143',
-      ward: '44', // 1 - 66
-      council_district: '1', // 1 - 10
-      census_tract: '1', // 1 - 300-and-something 
+      zip: '19143', // pass an array of zipcodes to filter on multiple zips
+      ward: '44', // 1 - 66; pass an array of wards to filter on multiple wards
+      council_district: '1', // 1 - 10; pass an array of districts to filter on multiple districts
+      census_tract: '1', // 1 - 300-and-something; pass an array of tracts to filter on multiple tracts
       start_date: '2011-12-01',
       end_date: '2012-12-01',
+      top: '2'
     }
 
 ### getPermitInfo
 
 Get permit details surrounding a specific permit ID, such as 33333:
 
-    phli.getPermitInfo('33333', function (data) {
+    phli.getPermitInfo('33333', function (err, data) {
       console.log(data);
     });
