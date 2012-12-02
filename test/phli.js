@@ -79,8 +79,8 @@ describe("Phli", function() {
         .get('/some/path?foo=bar')
         .reply(200, {resp: 'fakeResponse'});
 
-      phli.getData('http://www.someURL.com/some/path', {foo: 'bar'}, function(r) {
-        expect(r).to.eql({resp: 'fakeResponse'});
+      phli.getData('http://www.someURL.com/some/path', {foo: 'bar'}, function(err, data) {
+        expect(data).to.eql({resp: 'fakeResponse'});
         done();
       });
     });
