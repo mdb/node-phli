@@ -143,4 +143,65 @@ describe("helpers", function() {
       });
     });
   });
+
+  describe("#buildCommonParams", function () {
+    context("it is not passed any values which override its defaults", function () {
+      it("returns an object whose $format property is 'json'", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$format).to.eql('json');
+      });
+      
+      it("returns an object whose $expand property is 'locations'", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$expand).to.eql('locations');
+      });
+
+      it("returns an object whose $filter property is an empty string", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$filter).to.eql('');
+      });
+
+      it("returns an object whose $top property is an empty string", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$filter).to.eql('');
+      });
+
+      it("returns an object whose $inlinecount property is an empty string", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$inlinecount).to.eql('');
+      });
+
+      it("returns an object whose $filter property is an empty string", function () {
+        expect(helpers.buildCommonParams({foo: 'bar'}).$filter).to.eql('');
+      });
+    });
+
+    context("it is passed an options object with a 'top' property", function () {
+      it("returns an object whose $top value is the value of the top property in the options object it's passed", function () {
+        expect(helpers.buildCommonParams({top: '1'}).$top).to.eql('1');
+      });
+
+      it("returns an object whose $inlinecount value is 'allpages'", function () {
+        expect(helpers.buildCommonParams({top: '1'}).$inlinecount).to.eql('allpages');
+      });
+    });
+
+    context("it is passed locations-related options", function () {
+       it("sets the Odata-formatted-related location query to the value of $filter", function () {
+        expect(helpers.buildCommonParams({
+          zip: 'someZip'
+          }).$filter).to.eql("startswith(locations/zip, 'someZip')");
+      });
+    });
+
+    context("it is passed date-related options", function () {
+       it("sets the Odata-formatted-related date query to the value of $filter", function () {
+        expect(helpers.buildCommonParams({start_date: 'startDate'}).$filter).to.eql("issued_datetime ge datetime'startDate'");
+      });
+    });
+
+    context("it is passed date-related and location-related options", function () {
+       it("sets the Odata-formatted-related date query to the value of $filter, joining each with ' and '", function () {
+        expect(helpers.buildCommonParams({
+          start_date: 'startDate',
+          zip: 'someZip'
+        }).$filter).to.eql("startswith(locations/zip, 'someZip') and issued_datetime ge datetime'startDate'");
+      });
+    });
+  });
 });
