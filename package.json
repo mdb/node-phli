@@ -14,8 +14,7 @@
     "npm": "1.1.x"
   },
   "dependencies": {
-    "request": "*",
-    "underscore": "*"
+    "request": "*"
   },
   "devDependencies": {
     "mocha": "*",
