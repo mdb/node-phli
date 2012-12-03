@@ -38,6 +38,17 @@ describe("Phli", function() {
       expect(typeof phli.getAddressKey).to.eql("function");
       done();
     });
+
+    it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax", function (done) {
+      nock("http://services.phila.gov")
+        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27some%20address%27)?%24format=json")
+        .reply(200, {resp: "fakeResponse"});
+
+      phli.getPermitInfo('some address', function(err, data) {
+        expect(data).to.eql({resp: 'fakeResponse'});
+        done();
+      });
+    });
   });
 
   describe("#getPermitInfo", function () {
@@ -47,7 +58,7 @@ describe("Phli", function() {
       done();
     });
 
-    it("makes an API call to the proper services.phila.gov endpoing in the proper Odata-style syntax witht he necessary parameters", function (done) {
+    it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax witht he necessary parameters", function (done) {
       nock("http://services.phila.gov")
         .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someID%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
@@ -72,6 +83,23 @@ describe("Phli", function() {
       phli = require(modulePath)();
       expect(typeof phli.getPermits).to.eql("function");
       done();
+    });
+  });
+
+  describe("#getType", function () {
+    context("it is passed a 'permits' type", function () {
+      context("it is passed an options object with a contractor_name property", function () {
+        it("", function (done) {
+          nock("http://services.phila.gov")
+            .get("/PhillyApi/Data/v0.7/Service.svc/permits?%24format=json&%24filter=substringof(%27contractorName%27%2C%20contractor_name)&%24expand=locations&%24top=&%24inlinecount=")
+            .reply(200, {resp: "fakeResponse"});
+
+          phli.getType('permits', {contractor_name: 'contractorName'}, function(err, data) {
+            expect(data).to.eql({resp: 'fakeResponse'});
+            done();
+          });
+        });
+      });
     });
   });
 
