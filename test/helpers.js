@@ -182,7 +182,7 @@ describe("helpers", function() {
     });
 
     context("it is passed locations-related options", function () {
-       it("sets the Odata-formatted-related location query to the value of $filter", function () {
+      it("sets the Odata-formatted-related location query to the value of $filter", function () {
         expect(helpers.buildCommonParams({
           zip: 'someZip'
           }).$filter).to.eql("startswith(locations/zip, 'someZip')");
@@ -190,18 +190,38 @@ describe("helpers", function() {
     });
 
     context("it is passed date-related options", function () {
-       it("sets the Odata-formatted-related date query to the value of $filter", function () {
+      it("sets the Odata-formatted-related date query to the value of $filter", function () {
         expect(helpers.buildCommonParams({start_date: 'startDate'}).$filter).to.eql("issued_datetime ge datetime'startDate'");
       });
     });
 
     context("it is passed date-related and location-related options", function () {
-       it("sets the Odata-formatted-related date query to the value of $filter, joining each with ' and '", function () {
+      it("sets the Odata-formatted-related date query to the value of $filter, joining each with ' and '", function () {
         expect(helpers.buildCommonParams({
           start_date: 'startDate',
           zip: 'someZip'
         }).$filter).to.eql("startswith(locations/zip, 'someZip') and issued_datetime ge datetime'startDate'");
       });
+    });
+  });
+
+  describe("#applyDefaults", function () {
+    it("it applies default properties to an object", function () {
+      expect(helpers.applyDefaults({}, {
+        a: 1,
+        b: 2
+      })).to.eql({a: 1, b: 2});
+    });
+
+    it("overrides default properties with specified new values", function () {
+      expect(helpers.applyDefaults({
+        a: 'a',
+        b: 'b'
+      }, {
+        a: 1,
+        b: 2,
+        c: 3
+      })).to.eql({a: 'a', b: 'b', c: 3});
     });
   });
 });
