@@ -134,5 +134,13 @@ describe("helpers", function() {
         })).to.eql("startswith(locations/zip, 'someZip') and locations/ward eq 'someWard' and locations/council_district eq 'someCD' and locations/census_tract eq 'censusTract'");
       });
     });
+
+    context("the object it's passed contains no zip, council_district, census_tract, or ward properties", function () {
+      it("formats the property values into the proper OData-style", function () {
+        expect(helpers.buildLocationParams({
+          foo: 'bar'
+        })).to.eql(false);
+      });
+    });
   });
 });
