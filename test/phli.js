@@ -46,6 +46,17 @@ describe("Phli", function() {
       expect(typeof phli.getPermitInfo).to.eql("function");
       done();
     });
+
+    it("makes an API call to the proper services.phila.gov endpoing in the proper Odata-style syntax witht he necessary parameters", function (done) {
+      nock("http://services.phila.gov")
+        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someID%27)?%24format=json")
+        .reply(200, {resp: "fakeResponse"});
+
+      phli.getPermitInfo('someID', function(err, data) {
+        expect(data).to.eql({resp: 'fakeResponse'});
+        done();
+      });
+    });
   });
 
   describe("#getAddressHistory", function (done) {
@@ -81,6 +92,17 @@ describe("Phli", function() {
 
       phli.getData('http://www.someURL.com/some/path', {foo: 'bar'}, function(err, data) {
         expect(data).to.eql({resp: 'fakeResponse'});
+        done();
+      });
+    });
+
+    it("continues to work as designed, even if the API responds with an error code of 500", function (done) {
+      nock('http://www.someURL.com')
+        .get('/some/path?foo=bar')
+        .reply(500, {resp: 'fake500Response'});
+
+      phli.getData('http://www.someURL.com/some/path', {foo: 'bar'}, function(err, data) {
+        expect(data).to.eql({resp: 'fake500Response'});
         done();
       });
     });
