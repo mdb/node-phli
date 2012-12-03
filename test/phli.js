@@ -32,7 +32,7 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getAddressKey", function (done) {
+  describe("#getAddressKey", function () {
     it("exists a public method on a phli instance", function (done) {
       phli = require(modulePath)();
       expect(typeof phli.getAddressKey).to.eql("function");
@@ -40,7 +40,7 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getPermitInfo", function (done) {
+  describe("#getPermitInfo", function () {
     it("exists a public method on a phli instance", function (done) {
       phli = require(modulePath)();
       expect(typeof phli.getPermitInfo).to.eql("function");
@@ -59,7 +59,7 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getAddressHistory", function (done) {
+  describe("#getAddressHistory", function () {
     it("exists a public method on a phli instance", function (done) {
       phli = require(modulePath)();
       expect(typeof phli.getAddressHistory).to.eql("function");
@@ -67,7 +67,7 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getPermits", function (done) {
+  describe("#getPermits", function () {
     it("exists a public method on a phli instance", function (done) {
       phli = require(modulePath)();
       expect(typeof phli.getPermits).to.eql("function");
@@ -75,7 +75,7 @@ describe("Phli", function() {
     });
   });
 
-  describe("#getData", function (done) {
+  describe("#getData", function () {
     beforeEach(function() {
       phli = require(modulePath)();
     });
