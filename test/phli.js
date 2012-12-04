@@ -39,7 +39,7 @@ describe("Phli", function() {
       done();
     });
 
-    it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax", function (done) {
+    it("makes an API call to the proper services.phila.gov URL", function (done) {
       nock("http://services.phila.gov")
         .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someAddress%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
@@ -58,7 +58,7 @@ describe("Phli", function() {
       done();
     });
 
-    it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax witht he necessary parameters", function (done) {
+    it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax with the necessary parameters", function (done) {
       nock("http://services.phila.gov")
         .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someID%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
@@ -75,6 +75,28 @@ describe("Phli", function() {
       phli = require(modulePath)();
       expect(typeof phli.getAddressHistory).to.eql("function");
       done();
+    });
+
+    it("makes an API call to the proper services.phila.gov URL in the proper Odata-style syntax", function (done) {
+      // getAddressKey request
+      nock("http://services.phila.gov")
+        .get("/ULRS311/Data/LIAddressKey/someAddress?")
+        .reply(200, {
+          AgencyID: 'agencyIDVal',
+          TopicName: 'topicNameVal',
+          TopicID: 'topicIDVal',
+          AddressRef: 'addressRefVal'
+        });
+
+      // getAddressHistory request
+      nock("http://services.phila.gov")
+        .get("/PhillyAPI/data/v0.7/HelperService.svc/GetLocationHistory?%24format=json&AddressKey=topicIDVal")
+        .reply(200, {resp: "fakeResponse"});
+
+      phli.getAddressHistory('someAddress', function(err, data) {
+        expect(data).to.eql({resp: 'fakeResponse'});
+        done();
+      });      
     });
   });
 
