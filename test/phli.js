@@ -41,10 +41,10 @@ describe("Phli", function() {
 
     it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax", function (done) {
       nock("http://services.phila.gov")
-        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27some%20address%27)?%24format=json")
+        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someAddress%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
 
-      phli.getPermitInfo('some address', function(err, data) {
+      phli.getPermitInfo('someAddress', function(err, data) {
         expect(data).to.eql({resp: 'fakeResponse'});
         done();
       });
