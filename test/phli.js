@@ -101,6 +101,15 @@ describe("Phli", function() {
         });
       });
     });
+
+    context("it is not passed a valid type", function () {
+      it("Returns a 'Bad type' error", function (done) {
+        phli.getType('fakeType', {contractor_name: 'contractorName'}, function(err, data) {
+          expect(err).to.eql(new Error('Bad type'));
+          done();
+        });
+      });
+    });
   });
 
   describe("#getData", function () {
