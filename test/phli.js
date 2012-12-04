@@ -89,7 +89,7 @@ describe("Phli", function() {
   describe("#getType", function () {
     context("it is passed a 'permits' type", function () {
       context("it is passed an options object with a contractor_name property", function () {
-        it("", function (done) {
+        it("makes the properly formatted Odata-style API call", function (done) {
           nock("http://services.phila.gov")
             .get("/PhillyApi/Data/v0.7/Service.svc/permits?%24format=json&%24filter=substringof(%27contractorName%27%2C%20contractor_name)&%24expand=locations&%24top=&%24inlinecount=")
             .reply(200, {resp: "fakeResponse"});
