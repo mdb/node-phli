@@ -9,7 +9,7 @@ describe("Phli", function() {
   describe("#settings", function () {
     it("exists as a public object on a Phli instance", function () {
       phli = require(modulePath)();
-      expect(typeof phli.settings).to.eql('object');
+      expect(typeof phli.settings).to.eql("object");
     });
     
     it("is set to the value of the prototype's defaultSettings if no settings have been passed", function () {
