@@ -80,7 +80,7 @@ describe("Phli", function() {
     it("makes an API call to the proper services.phila.gov URL in the proper Odata-style syntax", function (done) {
       // getAddressKey request
       nock("http://services.phila.gov")
-        .get("/ULRS311/Data/LIAddressKey/someAddress?")
+        .get("/ULRS311/Data/LIAddressKey/someAddress")
         .reply(200, {
           AgencyID: 'agencyIDVal',
           TopicName: 'topicNameVal',
