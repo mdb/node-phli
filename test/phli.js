@@ -16,7 +16,7 @@ describe("Phli", function() {
       phli = require(modulePath)();
       expect(phli.settings.apiHost).to.eql("http://services.phila.gov");
       expect(phli.settings.addressKeyPath).to.eql("/ULRS311/Data/LIAddressKey");
-      expect(phli.settings.historyPath).to.eql("/PhillyAPI/data/v0.7/HelperService.svc/GetLocationHistory");
+      expect(phli.settings.historyPath).to.eql("/PhillyApi/Data/v1.0/locationhistories");
     });
     
     it("can be set to the overriding values it's passed on instantiation", function () {
@@ -41,10 +41,10 @@ describe("Phli", function() {
 
     it("makes an API call to the proper services.phila.gov URL", function (done) {
       nock("http://services.phila.gov")
-        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someAddress%27)?%24format=json")
+        .get("/PhillyApi/Data/v1.0/permits(%27someAddress%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
 
-      phli.getPermitInfo('someAddress', function(err, data) {
+      phli.getPermitInfo('someAddress', {}, function(err, data) {
         expect(data).to.eql({resp: 'fakeResponse'});
         done();
       });
@@ -60,10 +60,10 @@ describe("Phli", function() {
 
     it("makes an API call to the proper services.phila.gov endpoint in the proper Odata-style syntax with the necessary parameters", function (done) {
       nock("http://services.phila.gov")
-        .get("/PhillyApi/Data/v0.7/Service.svc/permits(%27someID%27)?%24format=json")
+        .get("/PhillyApi/Data/v1.0/permits(%27someID%27)?%24format=json")
         .reply(200, {resp: "fakeResponse"});
 
-      phli.getPermitInfo('someID', function(err, data) {
+      phli.getPermitInfo('someID', {}, function(err, data) {
         expect(data).to.eql({resp: 'fakeResponse'});
         done();
       });
@@ -90,7 +90,7 @@ describe("Phli", function() {
 
       // getAddressHistory request
       nock("http://services.phila.gov")
-        .get("/PhillyAPI/data/v0.7/HelperService.svc/GetLocationHistory?%24format=json&AddressKey=topicIDVal")
+        .get("/PhillyApi/Data/v1.0/locationhistories?%24format=json&AddressKey=topicIDVal")
         .reply(200, {resp: "fakeResponse"});
 
       phli.getAddressHistory('someAddress', function(err, data) {
@@ -113,7 +113,7 @@ describe("Phli", function() {
       context("it is passed an options object with a contractor_name property", function () {
         it("makes the properly formatted Odata-style API call and capitalizes the contractor name in the URL", function (done) {
           nock("http://services.phila.gov")
-            .get("/PhillyApi/Data/v0.7/Service.svc/permits?%24format=json&%24filter=substringof(%27CONTRACTORNAME%27%2C%20contractor_name)&%24expand=locations&%24top=&%24inlinecount=")
+            .get("/PhillyApi/Data/v1.0/permits?%24format=json&%24filter=substringof(%27CONTRACTORNAME%27%2C%20contractor_name)&%24expand=locations&%24top=&%24inlinecount=")
             .reply(200, {resp: "fakeResponse"});
 
           phli.getType('permits', {contractor_name: 'contractorName'}, function(err, data) {
