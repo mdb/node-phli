@@ -1,5 +1,5 @@
-var expect = require('expect.js');
-var helpers = require('../lib/helpers');
+var expect = require('expect.js'),
+    helpers = require('../lib/helpers');
 
 describe("helpers", function() {
 

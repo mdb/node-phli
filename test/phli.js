@@ -1,7 +1,7 @@
-var nock = require('nock');
-var expect = require('expect.js');
-var sinon = require('sinon');
-var modulePath = '../lib/phli';
+var nock = require('nock'),
+    expect = require('expect.js'),
+    sinon = require('sinon'),
+    modulePath = '../lib/phli';
 
 describe("Phli", function() {
   var phli;
@@ -11,14 +11,14 @@ describe("Phli", function() {
       phli = require(modulePath)();
       expect(typeof phli.settings).to.eql("object");
     });
-    
+
     it("is set to the value of the prototype's defaultSettings if no settings have been passed", function () {
       phli = require(modulePath)();
       expect(phli.settings.apiHost).to.eql("http://services.phila.gov");
       expect(phli.settings.addressKeyPath).to.eql("/ULRS311/Data/LIAddressKey");
       expect(phli.settings.historyPath).to.eql("/PhillyApi/Data/v1.0/locationhistories");
     });
-    
+
     it("can be set to the overriding values it's passed on instantiation", function () {
       phli = require(modulePath)({
         apiHost: 'fakeHost',
@@ -96,7 +96,7 @@ describe("Phli", function() {
       phli.getAddressHistory('someAddress', function(err, data) {
         expect(data).to.eql({resp: 'fakeResponse'});
         done();
-      });      
+      });
     });
   });
 
